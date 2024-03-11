@@ -75,6 +75,7 @@ public class ForgotPasswordController {
     @PostMapping("/changePassword/{email}")
     public ResponseEntity<String> changePasswordHandler(@RequestBody ChangePassword changePassword,
                                                         @PathVariable String email){
+
         if(!Objects.equals(changePassword.password(), changePassword.repeatPassword())){
             return new ResponseEntity<>("Password does not match", HttpStatus.EXPECTATION_FAILED);
         }
