@@ -47,7 +47,7 @@ public class ForgotPasswordController {
 
         ForgotPassword fp = ForgotPassword.builder()
                 .otp(otp)
-                .expirationTime(new Date((System.currentTimeMillis() + 120 * 1000)))
+                .expirationTime(new Date((System.currentTimeMillis() + 90 * 1000)))
                 .user(user)
                 .build();
 
@@ -74,7 +74,7 @@ public class ForgotPasswordController {
 
     @PostMapping("/changePassword/{email}")
     public ResponseEntity<String> changePasswordHandler(@RequestBody ChangePassword changePassword,
-                                                        @RequestParam String email){
+                                                        @PathVariable String email){
         if(!Objects.equals(changePassword.password(), changePassword.repeatPassword())){
             return new ResponseEntity<>("Password does not match", HttpStatus.EXPECTATION_FAILED);
         }
